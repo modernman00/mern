@@ -1,6 +1,7 @@
 import React from 'react'
 
 export default function TableBody({username, name, password}) {
+    console.log(username, password)
     return (
                  <tbody>
                         <tr>

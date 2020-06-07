@@ -9,7 +9,7 @@ export default class Exercise extends Component {
         super(props)
 
         this.state = {
-            formData2: userData,
+            user: userData,
             dbData: ""
         }
     }
@@ -20,13 +20,14 @@ export default class Exercise extends Component {
             .then(res => {
                 this.setState({ dbData: res.data })
                 console.log(res.data)
+                  console.log(this.state.user)
             })
             .catch(err => console.log(err))
     }
 
     render() {
         return (
-            <Show data = {this.state.dbData }/>
+            <Show data = {this.state.user }/>
         )
     }
 }

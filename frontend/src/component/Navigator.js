@@ -11,10 +11,18 @@ export default class Navigator extends Component {
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="mr-auto">
-                        <Nav.Link> <Link to="/user">User</Link></Nav.Link>
-                         <Nav.Link> <Link to="/exercise">Exercise</Link></Nav.Link>
-                         <Nav.Link> <Link to="/createUser">Create User</Link></Nav.Link>
-                         <Nav.Link> <Link to="/CreateExercise">Create Exercise</Link></Nav.Link>
+                        {/* <Nav.Link>  */}
+                            <Link to="/user">User</Link>
+                            {/* </Nav.Link> */}
+                         {/* <Nav.Link>  */}
+                             <Link to="/exercise">Exercise</Link>
+                             {/* </Nav.Link> */}
+                         {/* <Nav.Link>  */}
+                             <Link to="/createUser">Create User</Link>
+                             {/* </Nav.Link>
+                         <Nav.Link>  */}
+                             <Link to="/CreateExercise">Create Exercise</Link>
+                             {/* </Nav.Link> */}
         
              
                     </Nav>

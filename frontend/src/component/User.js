@@ -20,6 +20,7 @@ export default class User extends Component {
         .then(res =>{ 
             this.setState({ tableHead: res.data})
             console.log(res.data)
+            console.log(this.state.user)
             })
         .catch(err => console.log(err))
     } 
