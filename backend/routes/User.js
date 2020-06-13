@@ -23,7 +23,7 @@ router.route('/add').post((req, res)=>{
 // route /user
 router.route('/delete/:id').delete((req, res) => {
     //call the User schema/ database
-    Exercise.findByIdAndDelete(req.params.id)
+    User.findByIdAndDelete(req.params.id)
         .then((exe) => res.json(`${exe.id} deleted`))
         .catch(err => res.status(400).json(`Error :  ${err}`))
 });
