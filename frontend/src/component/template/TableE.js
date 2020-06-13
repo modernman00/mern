@@ -2,8 +2,9 @@ import React from 'react'
 import { Table } from "react-bootstrap"
 
 
-export default function TableE({header, body}) {
+export default function TableE({header, body, deleteEntry}) {
     let no = 0
+
     const tableHeadData = () => {
         return header.map(el => { 
             return (
@@ -16,7 +17,7 @@ export default function TableE({header, body}) {
           let no = 0          
          return body.map(el => {  
              no++
-             let deleteLink = "/exercise/delete/" + el._id
+            //let deleteLink = "/exercise/delete/" + el._id
              let editLink = "/exercise/edit/" + el._id
             return (
                 <tr key={no}>
@@ -30,7 +31,7 @@ export default function TableE({header, body}) {
                     <td> {el.user}</td> 
                      <td> {el.pics}</td> 
                      <td><a href={editLink}>edit</a></td> 
-                     <td><a href={deleteLink}>delete</a></td>
+                     <td><button type='button' onClick ={() =>deleteEntry(el._id)}>delete</button></td>
                 </tr>
                
             )

@@ -11,7 +11,8 @@ export default class User extends Component {
 
         this.state = {
             tableHead: userData,
-            tableBody: []            
+            tableBody: [],
+            dataDelete: []          
         }
     }
 
@@ -24,12 +25,30 @@ export default class User extends Component {
         .catch(err => console.log(err))
     } 
 
+       deleteEntry = (id) => {
+        axios.delete(`http://localhost:5000/user/delete/${id}`)
+            .then(res =>{               
+                this.setState({
+                    dataDelete: res.data
+                })
+            })
+            .catch(err => console.log(err))
+
+        this.setState({
+            dataDelete: this.state.dataDelete.filter(el => el._id !== id)
+        })
+
+        window.location ='/user'
+    }
+
+
     render() {
         return (
              <ErrorBoundary>
             <TableU 
             body={this.state.tableBody} 
             header={this.state.tableHead} 
+            deleteEntry = {this.deleteEntry}
             />
             </ErrorBoundary>
         )  

@@ -6,14 +6,12 @@ import ErrorBoundary from './ErrorBoundary';
 
 
 export default class Exercise extends Component {
-
     constructor(props) {
         super(props)
-
         this.state = {
             tableHead: exerciseData,
             tableBody: [],
-            dataDelete: "",
+            dataDelete: []
         }
     }
 
@@ -22,7 +20,7 @@ export default class Exercise extends Component {
         axios.get('http://localhost:5000/exercise/show')
             .then(res => {           
                 this.setState({ 
-                tableBody: res.data,
+                tableBody: res.data
                 })
              })
             .catch(err => console.log(err))
@@ -30,8 +28,7 @@ export default class Exercise extends Component {
 
     deleteEntry = (id) => {
         axios.delete(`http://localhost:5000/exercise/delete/${id}`)
-            .then(res =>{
-               
+            .then(res =>{               
                 this.setState({
                     dataDelete: res.data
                 })
@@ -41,6 +38,8 @@ export default class Exercise extends Component {
         this.setState({
             dataDelete: this.state.dataDelete.filter(el => el._id !== id)
         })
+
+        window.location ='/exercise'
     }
 
     render() {
@@ -49,6 +48,7 @@ export default class Exercise extends Component {
             <TableE 
             body={this.state.tableBody} 
             header={this.state.tableHead} 
+            deleteEntry = {this.deleteEntry}
             />
             </ErrorBoundary>
         )

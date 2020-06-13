@@ -20,6 +20,15 @@ router.route('/add').post((req, res)=>{
     .catch((err)=> res.status(400).json(`Error - data could not be saved : ${err}`))
 })
 
+// route /user
+router.route('/delete/:id').delete((req, res) => {
+    //call the User schema/ database
+    Exercise.findByIdAndDelete(req.params.id)
+        .then((exe) => res.json(`${exe.id} deleted`))
+        .catch(err => res.status(400).json(`Error :  ${err}`))
+});
+
+
 
 router.route('/').get((req, res)=> {
     res.send(`<form method="post" action="/user/add">
