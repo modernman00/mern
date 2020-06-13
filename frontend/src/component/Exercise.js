@@ -1,7 +1,9 @@
 import React, { Component } from 'react'
-import Show from './template/Show'
-import { userData } from './data/formData'
+import { exerciseData } from './data/formData'
 import axios from "axios"
+import TableE from './template/TableE'
+import ErrorBoundary from './ErrorBoundary';
+
 
 export default class Exercise extends Component {
 
@@ -9,25 +11,46 @@ export default class Exercise extends Component {
         super(props)
 
         this.state = {
-            user: userData,
-            dbData: ""
+            tableHead: exerciseData,
+            tableBody: [],
+            dataDelete: "",
         }
     }
 
     componentDidMount() {
         // get out the data from backend
-        axios.get('http://localhost:5000/user/show')
-            .then(res => {
-                this.setState({ dbData: res.data })
-                console.log(res.data)
-                  console.log(this.state.user)
+        axios.get('http://localhost:5000/exercise/show')
+            .then(res => {           
+                this.setState({ 
+                tableBody: res.data,
+                })
+             })
+            .catch(err => console.log(err))
+    }
+
+    deleteEntry = (id) => {
+        axios.delete(`http://localhost:5000/exercise/delete/${id}`)
+            .then(res =>{
+               
+                this.setState({
+                    dataDelete: res.data
+                })
             })
             .catch(err => console.log(err))
+
+        this.setState({
+            dataDelete: this.state.dataDelete.filter(el => el._id !== id)
+        })
     }
 
     render() {
         return (
-            <Show data = {this.state.user }/>
+            <ErrorBoundary>
+            <TableE 
+            body={this.state.tableBody} 
+            header={this.state.tableHead} 
+            />
+            </ErrorBoundary>
         )
     }
 }

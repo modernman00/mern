@@ -1,25 +1,34 @@
 //import{ userData } from './../data/formData'
 import React from 'react'
 import { Table } from "react-bootstrap"
-import TableHead from "./TableHead"
-import TableBody from "./TableBody"
+
 
 export default function Show({data}) {
     console.log(data)
+ 
     return (
          <Table striped bordered hover>
-                <TableHead />
-                
-                {
-                    data.map(el => {
-                        return <TableBody
-                            key={el.name}
-                            username={el.username}
-                            name={el.name}
-                            password={el.password}
-                          />
-                    })
-                }
+                <thead>                   
+                      
+                        <tr>
+                            <th>username</th>
+                             <th>name</th>
+                              <th>password</th>
+                                                
+                        </tr>
+
+                    </thead>
+
+                    <tbody>
+                        <tr>
+                            <td>{data[0].username}</td>
+                            <td>{data[0].name}</td>
+                            <td>{data[0].password}</td>
+                            <td>edit</td>
+                            <td>delete</td>     
+                        </tr>
+                    </tbody> 
+                              
             </Table>
     )
 }

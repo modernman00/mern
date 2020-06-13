@@ -17,8 +17,9 @@ router.route('/show/:id').get((req, res) => {
         .catch(err => res.status(400).json(`Error :  ${err}`))
 });
 
+
 // route /user
-router.route('/show/:id').delete((req, res) => {
+router.route('/delete/:id').delete((req, res) => {
     //call the User schema/ database
     Exercise.findByIdAndDelete(req.params.id)
         .then((exe) => res.json(`${exe.id} deleted`))

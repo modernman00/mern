@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
-import Show from './template/Show'
+import TableU from './template/TableU'
 import { userData } from './data/formData'
 import axios from "axios"
+import ErrorBoundary from "./ErrorBoundary"
 
 export default class User extends Component {
 
@@ -9,8 +10,8 @@ export default class User extends Component {
         super(props)
 
         this.state = {
-            user: userData,
-            tableHead: []            
+            tableHead: userData,
+            tableBody: []            
         }
     }
 
@@ -18,19 +19,19 @@ export default class User extends Component {
        // get out the data from backend
         axios.get('http://localhost:5000/user/show')
         .then(res =>{ 
-            this.setState({ tableHead: res.data})
-            console.log(res.data)
-            console.log(this.state.user)
-            })
+            this.setState({ tableBody: res.data})
+        })
         .catch(err => console.log(err))
     } 
 
     render() {
         return (
-            this.state.tableHead.map( el => {
-                return  <Show key = {el.name} username = {el.username}  name = {el.name} password = {el.password} header = {this.state.user} />
-            }          
-        )
+             <ErrorBoundary>
+            <TableU 
+            body={this.state.tableBody} 
+            header={this.state.tableHead} 
+            />
+            </ErrorBoundary>
         )  
     }
 }

@@ -1,7 +1,6 @@
 export const exerciseData = [
-    { label: "First Name", 
-    attribute: "first_name", 
-    type: "text" },
+    { attribute: "No", label: "", type: "hidden" },
+    { label: "First Name", attribute: "first_name", type: "text" },
     { label: "Second Name", attribute: "last_name", type: "text" },
     { label: "weight", attribute: "weight", type: "number" },
     { label: "body type", attribute: "bodyType", type: "select", options: ["Fat", "Muscular", "Normal"] },
@@ -13,6 +12,7 @@ export const exerciseData = [
 ]
 
 export const userData = [
+    { attribute: "No", label: "", type: "hidden" },
     { label: "username", attribute: "username", type: "text" },
     {label: "name", attribute: "name", type: "text"},
     { label: "password", attribute: "password", type: "password" }

@@ -17,6 +17,8 @@ export default function InputForm({ label, attribute, type, option, Validate, us
 
     const renderHtml = () => {
 
+        let no = 0
+
         if (attribute === "user") {
             return <Form.Control
                 as={type} name={attribute}
@@ -41,7 +43,8 @@ export default function InputForm({ label, attribute, type, option, Validate, us
                 style={style.input}>
                 <option>Select</option>
                 {option.map(el => {
-                    return <option value={el}>
+                    no++
+                    return <option key ={no} value={el}>
                         {el}
                     </option>
                 })}

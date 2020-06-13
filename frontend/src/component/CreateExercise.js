@@ -81,11 +81,13 @@ export default class CreateExercise extends Component {
 
     render() {
         return (
-            <div className="container">
-            <form onSubmit={this.submit}>
-                {this.state.error}
-                <Form>
+
+            // <form className="container" onSubmit={this.submit}>
+               
+                <Form className = "container" onSubmit ={this.submit}>
+                     {this.state.error}
                     {
+                
                         this.state.data.map(el => {
                             return <InputForm key={el.attribute} 
                             label={el.label.toUpperCase()} 
@@ -103,9 +105,6 @@ export default class CreateExercise extends Component {
                 </Form>
 
 
-            </form>
-
-        </div>
         )
     }
 }
