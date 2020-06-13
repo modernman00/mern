@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
-import { Form, Button } from "react-bootstrap"
+import { Form, Button, Alert } from 'react-bootstrap';
 import { exerciseData } from './data/formData'
 import InputForm from './template/InputForm'
 import axios from 'axios'
+import ErrorBoundary from './ErrorBoundary';
 
 export default class CreateExercise extends Component {
     constructor(props) {
@@ -16,7 +17,8 @@ export default class CreateExercise extends Component {
             bodyType: "",
             duration: "",
             error: "",
-            user: [],  
+            user:"",
+            userData: [],  
             data: exerciseData
         }
     }
@@ -24,7 +26,7 @@ export default class CreateExercise extends Component {
     componentDidMount()
     {
         axios.get('http://localhost:5000/user/show')
-        .then(res =>{ this.setState({ user: res.data})
+        .then(res =>{ this.setState({ userData: res.data})
      })
         .catch(err => console.log(err))
     }
@@ -46,7 +48,7 @@ export default class CreateExercise extends Component {
         let name = e.target.name;
         let err;
         if(value.length > 10)  {
-                err = (value.length > 10) && "Your entry is above the limit " + name
+                err = (value.length > 10) && "Your entry is above the limit: " + name
         }  
        this.setState({
            error : err,
@@ -54,48 +56,48 @@ export default class CreateExercise extends Component {
        })
     }
 
+    
+           
     submit = (e) => {
         e.preventDefault()
+       alert('submit')
         const {first_name, last_name, weight, bodyType, duration, date, user} = this.state;
         const exercise = {
-            first_name : first_name,
-            last_name : last_name,
-            weight: weight,
-            bodyType: bodyType,
-            duration: duration,
-            date: date,
-            user: user
+           first_name, last_name, weight, bodyType, duration, date, user
         }
+
+        console.log(exercise)
        
         axios.post('http://localhost:5000/exercise/add', exercise)
         .then(res => {
             console.log(res.data)
             })
         .catch(err => {
-            console.log(err)
+            console.log(err.response)
         })
-
-
-       window.location = "/exercise"
+         window.location = "/exercise"
     }
 
     render() {
         return (
 
             // <form className="container" onSubmit={this.submit}>
-               
-                <Form className = "container" onSubmit ={this.submit}>
-                     {this.state.error}
+              
+                <Form className = "container" onSubmit={this.submit}>
+                    <Alert variant = {(this.state.error) && 'danger'}> {this.state.error} </Alert>
+                 
                     {
                 
                         this.state.data.map(el => {
-                            return <InputForm key={el.attribute} 
+                            return <ErrorBoundary key={el.attribute}>
+                                <InputForm key={el.attribute} 
                             label={el.label.toUpperCase()} 
                             attribute={el.attribute} 
                             type={el.type} 
-                            option = {el.options} 
+                            options = {el.options} 
                             Validate ={this.Validate}
-                            user = {this.state.user}/>
+                            userData = {this.state.userData}/>
+                            </ErrorBoundary>
                         })
                     }
 

@@ -56,34 +56,12 @@ router.route('/add').post((req, res) => {
     const duration = req.body.duration;
     const bodyType = req.body.bodyType;
     const date = req.body.date;
-    const newExe = new Exercise({ first_name, last_name, weight, duration, bodyType, date });
+    const user = req.body.user;
+    const newExe = new Exercise({ first_name, last_name, weight, duration, bodyType, date, user });
     newExe.save()
         .then(() => { res.json('User added: <a href="/exercise/show">Show users </a>') })
         .catch((err) => res.status(400).json(`Error : ${err}`))
 })
-
-
-router.route('/').get((req, res) => {
-    res.send(`<form method="post" action="/exercise/add">
-        <label> First Name </label>
-        <input name="first_name" placeholder ="first_name"><br>
-         <label> Last name </label>
-        <input name="last_name" type="text" placeholder ="your last name"><br>
-        <label> Weight </label>
-        <input name="weight" placeholder ="weight"><br>
-         <label> Duration </label>
-        <input name="duration" type="text" placeholder ="your duration"><br>
-        <label> Body Path </label>
-        <input name="bodyType" placeholder ="bodyType"><br>
-         <label> Date </label>
-        <input name="date" type="date"><br>
-
-        <button type = "submit">Submit</button>
-    </form>`)
-
-})
-
-
 
 
 module.exports = router;

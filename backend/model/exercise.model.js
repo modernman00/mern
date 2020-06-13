@@ -23,21 +23,21 @@ const exerciseSchema = new Schema({
     },
     duration: {
         type: Number,
-        required: true,
+        // required: true,
         trim: true,
         minlength: 1
     },
      bodyType: {
         type: String,
-        required: true,
+        // required: true,
         trim: true,
-        minlength: 1
+        // minlength: 1
     },
     date: {
         type: Date,
-        required: true,
+        // required: true,
         trim: true,
-        minlength: 1
+        // minlength: 1
     },
     picture: {
         image:Buffer,
@@ -45,9 +45,9 @@ const exerciseSchema = new Schema({
     },
       user: {
         type: String,
-        required: true,
+        // required: true,
         trim: true,
-        minlength: 1
+        // minlength: 1
     }
 },
 {

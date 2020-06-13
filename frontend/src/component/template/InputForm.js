@@ -1,8 +1,9 @@
 import React from 'react'
 import { Form } from "react-bootstrap"
 
-export default function InputForm({ label, attribute, type, option, Validate, user }) {
+export default function InputForm({ label, attribute, type, options, Validate, userData }) {
 
+    let no = 0
     const style = {
         label: {
             color: 'blue',
@@ -14,40 +15,28 @@ export default function InputForm({ label, attribute, type, option, Validate, us
             borderWidth: 5,
         }
     }
+    // select option if user data is there
+    let selectUser = (userData) && userData.map(el => {
+        no++
+        return <option key={no} value={el.name}> {el.name}
+        </option>
+    })
+    // other select options
+    let select = (options) && options.map((el, index) => {
+        return <option key={index} value={el}> {el}</option>
+    })
 
     const renderHtml = () => {
-
-        let no = 0
-
-        if (attribute === "user") {
+        if (type === 'select') {
             return <Form.Control
                 as={type} name={attribute}
                 onChange={Validate}
                 style={style.input}>
                 <option>Select</option>
-                {            
-                    user.map(el => {
-                        return <option key = {el.username} 
-                        value={el.username}>
-                            {el.username}
-                        </option>
-                    })
-                
-                }          
-                
-            </Form.Control>
-        } else if (type === 'select') {
-            return <Form.Control
-                as={type} name={attribute}
-                onChange={Validate}
-                style={style.input}>
-                <option>Select</option>
-                {option.map(el => {
-                    no++
-                    return <option key ={no} value={el}>
-                        {el}
-                    </option>
-                })}
+                {
+                    (attribute === 'user') ? selectUser : select
+                }
+
             </Form.Control>
         } else if (type === 'image') {
             return <Form.File id={attribute} style={style.input} />
@@ -58,12 +47,10 @@ export default function InputForm({ label, attribute, type, option, Validate, us
                 type={type}
                 name={attribute}
                 placeholder={label}
-                autoComplete = "on"
+                autoComplete="on"
             />
         }
     }
-
-
 
     return (
         <Form.Group>
