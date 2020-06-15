@@ -4,7 +4,7 @@ import { userData } from './../data/formData'
 import InputForm from './../template/InputForm'
 import axios from "axios";
 
-export default class CreateUser extends Component {
+export default class EditUser extends Component {
 
     constructor(props) {
         super(props)

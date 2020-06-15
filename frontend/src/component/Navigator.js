@@ -13,6 +13,7 @@ export default class Navigator extends Component {
                         <Nav className="mr-auto">
                             <Nav.Link href="/user">User </Nav.Link>
                             <Nav.Link href="/exercise">Exercise</Nav.Link>
+                       
                             <Nav.Link href="/createUser">Create User</Nav.Link>
                             <Nav.Link href="/CreateExercise">Create Exercise</Nav.Link>
                         </Nav>

@@ -20,7 +20,7 @@ export default class CreateExercise extends Component {
             user: "",
             userData: [],
             data: exerciseData,
-        };
+          };
     }
 
     componentDidMount() {
@@ -45,7 +45,7 @@ export default class CreateExercise extends Component {
         });
     };
 
-    submit = (e) => {
+   submit = (e) => {
         e.preventDefault();
         alert("submit");
         const {
@@ -82,7 +82,6 @@ export default class CreateExercise extends Component {
 
     render() {
         return (
-            // <form className="container" onSubmit={this.submit}>
 
             <Form className="container" onSubmit={this.submit}>
                 <Alert variant={this.state.error && "danger"}>

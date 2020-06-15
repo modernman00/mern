@@ -16,8 +16,8 @@ function App() {
       <Navigator/>
       <br/>  
       <Switch>    
-      <Route path="exercise/edit/:id" exact component={EditExercise}/>
-      <Route path="user/edit/:id" exact component={EditUser}/>
+      <Route path="/exercise/edit/:id" exact component={EditExercise}/>
+      <Route path="/user/edit/:id" exact component={EditUser}/>
       <Route path="/createExercise" component={CreateExercise}/>
       <Route path="/createUser" component={CreateUser}/>
       <Route path="/exercise" exact component={Exercise}/>
