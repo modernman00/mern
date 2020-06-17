@@ -6,6 +6,8 @@ const routerExercise  = require('./routes/Exercise'); // router - import
 const routerUser = require('./routes/User');  // router
 const app = express(); // create an express application
 const port = process.env.PORT || 5000;  // port 
+
+
 app.use(express.urlencoded({ extended: false }))
 
 
@@ -17,8 +19,12 @@ mongoose.connect(uri, {
     useCreateIndex: true
 });
 
+//init gfs
+let gfs
+
 const connection = mongoose.connection;
 connection.once('open', ()=>{
+ 
     console.log("Mongo database connection is established");
 })
 

@@ -27,7 +27,7 @@ router.route('/delete/:id').delete((req, res) => {
 });
 
 // route /user UPDATE
-router.route('/show/update/:id').post((req, res) => {
+router.route('/update/:id').post((req, res) => {
     //call the User schema/ database
     Exercise.findById(req.params.id)
         .then((exe) => {
@@ -50,6 +50,7 @@ router.route('/show/update/:id').post((req, res) => {
 // posting to the user collection
 
 router.route('/add').post((req, res) => {
+
     const first_name = req.body.first_name;
     const last_name = req.body.last_name;
     const weight = req.body.weight;
@@ -57,6 +58,7 @@ router.route('/add').post((req, res) => {
     const bodyType = req.body.bodyType;
     const date = req.body.date;
     const user = req.body.user;
+
     const newExe = new Exercise({ first_name, last_name, weight, duration, bodyType, date, user });
     newExe.save()
         .then(() => { res.json('User added: <a href="/exercise/show">Show users </a>') })

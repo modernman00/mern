@@ -27,7 +27,7 @@ const exerciseSchema = new Schema({
         trim: true,
         minlength: 1
     },
-     bodyType: {
+    bodyType: {
         type: String,
         // required: true,
         trim: true,
@@ -40,19 +40,25 @@ const exerciseSchema = new Schema({
         // minlength: 1
     },
     picture: {
-        image:Buffer,
+        image: Buffer,
         name: String
     },
-      user: {
+
+    pictureType: {
+        type: String
+
+    },
+
+    user: {
         type: String,
         // required: true,
         trim: true,
         // minlength: 1
     }
 },
-{
-    timestamps: true,
-}
+    {
+        timestamps: true,
+    }
 );
 
 const Exercise = mongoose.model('Exercise', exerciseSchema);

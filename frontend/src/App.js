@@ -8,6 +8,7 @@ import CreateUser from "./component/CreateUser"
 import User from "./component/User"
 import Exercise from "./component/Exercise"
 import Navigator from "./component/Navigator"
+import Home from "./component/Home"
 
 
 function App() {
@@ -22,6 +23,7 @@ function App() {
       <Route path="/createUser" component={CreateUser}/>
       <Route path="/exercise" exact component={Exercise}/>
       <Route path="/user" exact component={User}/>
+        <Route path="/" exact component={Home}/>
       </Switch>
     </Router>
   );
